@@ -1,4 +1,15 @@
 <html>
-  <head><title>123</title></head>
-<script>window.location.replace("https://www.runoob.com");</script>
-  </html>
+<head><title>跳转中</title></head>
+<script>
+var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open('GET', 'https://netcut.cn/api/note/data/?note_id=44217e5be5efd71f&_=1682819115314', true);//第二步：打开连接  将请求参数写在url中  ps:"http://localhost:8080/rest/xxx"
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = httpRequest.responseText;//获取到json字符串，还需解析
+                var obj =JSON.parse(json);
+                console.log(obj.data.note_content);
+            }
+        };
+window.location.replace(obj.data.note_content);</script>
+</html>
