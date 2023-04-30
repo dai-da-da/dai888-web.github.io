@@ -11,7 +11,7 @@ var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
                 var obj =JSON.parse(json);
                 console.log(obj.data.note_content);
                 one=obj.data.note_content
-                window.location.href(obj.data.note_content);
+                window.location=obj.data.note_content;
             }
         };
 </script>
