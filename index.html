@@ -10,8 +10,8 @@ var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
                 var json = httpRequest.responseText;//获取到json字符串，还需解析
                 var obj =JSON.parse(json);
                 console.log(obj.data.note_content);
-                one=obj.data.note_content
-                window.location.replace(obj.data.note_content);
+                one=obj.data.note_content;
+                console.log(one);
             }
         };
 </script>
