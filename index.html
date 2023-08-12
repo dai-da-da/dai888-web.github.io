@@ -1,21 +1,71 @@
 <html>
 
 <head>
-    <title>跳转中</title>
+    <title>代大大的主页</title>
 </head>
 
 <body>
-    <div class="main"></div>
+    <div class="main">
+
+    </div>
 
 </body>
 <style>
-    .div {
+    body {
+        margin: 0px;
+    }
+
+    a{text-decoration:none;color: #000000;;}
+    .main {
+        display: flex;
+        margin: 0px;
         width: 100%;
         height: 100%;
+        background-image: url(img/背景.jpg);
+        background-size: cover;
+        left: 0px;
+        top: 0px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: flex-start;
+    }
+
+    .icon_main {
+        margin-top: 10px;
+        margin-left: 10px;
+        width: 80px;
+        height: 80px;
+        /* background-color: aqua; */
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon_img {
+        width: 50px;
+        height: 50px;
+        /* background-color: rgb(255, 255, 255); */
+        border-radius: 50px;
+    }
+
+    .icon_text {
+        width: 80px;
+        height: 20px;
+        /* background-color: azure; */
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
     }
 </style>
 <script>
-    var one
+    var one;
+    var two;
     var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
     httpRequest.open('GET', 'https://netcut.cn/api/note/data/?note_id=44217e5be5efd71f&_=1682819115314', true);//第二步：打开连接  将请求参数写在url中  ps:"http://localhost:8080/rest/xxx"
     httpRequest.send();//第三步：发送请求  将请求参数写在URL中
@@ -25,8 +75,68 @@
             var obj = JSON.parse(json);
             console.log(obj.data.note_content);
             one = obj.data.note_content;
+            var i=2;
+            var div0=document.getElementsByClassName("main")[0];
+            while (find_str_1(one,i)!="over"){
+                var two=find_str_1(one,i);
+                i++;
+                var div1=document.createElement("a");
+                div1.className="icon_main";
+                div1.href=find_str_2(two,4);
+                div1.target="_blank";
+                var div11=document.createElement("img");
+                div11.className="icon_img";
+                div11.src=find_str_2(two,2);
+                var div12=document.createElement("span");
+                div12.className="icon_text";
+                div12.innerText = find_str_2(two,3);
+
+                div1.appendChild(div11);
+                div1.appendChild(div12);
+                div0.appendChild(div1);
+
+
+
+            }
+
+            two=find_str_1(one,1);
+            two=find_str_2(two,2);
+            console.log(two);
         }
     };
+
+    function find_str_1(str_1, num) {
+        var i = 0;
+        var str_2 = "";
+        while (num - 1) {
+            if (encodeURI(str_1[i]) == "%0A")
+                num = num - 1;
+            i = i + 1;
+        }
+        while (encodeURI(str_1[i]) != "%0A") {
+            str_2 = str_2 + str_1[i];
+            i = i + 1;
+        }
+        return str_2;
+    }
+
+    function find_str_2(str_1, num) {
+        var i = 0;
+        var str_2 = "";
+        while (num - 1) {
+            if (str_1[i] == " ")
+                num = num - 1;
+            i = i + 1;
+        }
+        while (str_1[i] != " ") {
+            str_2 = str_2 + str_1[i];
+            i = i + 1;
+        }
+        return str_2;
+    }
+
+
+
 </script>
 
 </html>
