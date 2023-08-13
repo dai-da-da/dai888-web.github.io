@@ -66,6 +66,7 @@
 <script>
     var one;
     var two;
+    var thr;
     var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
     httpRequest.open('GET', 'https://netcut.cn/api/note/data/?note_id=44217e5be5efd71f&_=1682819115314', true);//第二步：打开连接  将请求参数写在url中  ps:"http://localhost:8080/rest/xxx"
     httpRequest.send();//第三步：发送请求  将请求参数写在URL中
@@ -121,14 +122,16 @@
             // 在启动时获取鼠标光标位置：
             pos3 =0 ;
             pos4 =0 ;
-            elmnt.style.top =elmnt.style.top+200;
+            thr=elmnt.href;
+            elmnt.href="";
+            
             document.onmouseup = closeDragElement;
             // 当光标移动时调用一个函数：
             document.onmousemove = elementDrag;
         }
 
         function elementDrag(e) {
-            elmnt.attr("disabled",true).css("pointer-events","none");
+            
             e = e || window.event;
             e.preventDefault();
             // 计算新的光标位置：
@@ -142,7 +145,7 @@
         function closeDragElement() {
             /* 释放鼠标按钮时停止移动：*/
             
-            
+            elmnt.href=thr;
             document.onmouseup = null;
             document.onmousemove = null;
         }
