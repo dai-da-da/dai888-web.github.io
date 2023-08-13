@@ -119,8 +119,8 @@
             e = e || window.event;
             e.preventDefault();
             // 在启动时获取鼠标光标位置：
-            pos3 = 0;
-            pos4 = 0;
+            pos3 = elmnt.style.width/2;
+            pos4 = elmnt.style.height/2;
             document.onmouseup = closeDragElement;
             // 当光标移动时调用一个函数：
             document.onmousemove = elementDrag;
