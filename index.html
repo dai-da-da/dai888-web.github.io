@@ -119,8 +119,8 @@
             e = e || window.event;
             e.preventDefault();
             // 在启动时获取鼠标光标位置：
-            pos3 = e.clientX;
-            pos4 = e.clientY;
+            pos3 = 0;
+            pos4 = 0;
             document.onmouseup = closeDragElement;
             // 当光标移动时调用一个函数：
             document.onmousemove = elementDrag;
@@ -130,8 +130,6 @@
             e = e || window.event;
             e.preventDefault();
             // 计算新的光标位置：
-            pos3 = e.clientX;
-            pos4 = e.clientY;
             pos1=e.clientX-pos3;
             pos2=e.clientY-pos4;
             // 设置元素的新位置：
