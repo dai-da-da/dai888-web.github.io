@@ -15,7 +15,12 @@
         margin: 0px;
     }
 
-    a{text-decoration:none;color: #000000;;}
+    a {
+        text-decoration: none;
+        color: #000000;
+        ;
+    }
+
     .main {
         display: flex;
         margin: 0px;
@@ -75,33 +80,74 @@
             var obj = JSON.parse(json);
             console.log(obj.data.note_content);
             one = obj.data.note_content;
-            var i=2;
-            var div0=document.getElementsByClassName("main")[0];
-            while (find_str_1(one,i)!="over"){
-                var two=find_str_1(one,i);
+            var i = 2;
+            var div0 = document.getElementsByClassName("main")[0];
+            while (find_str_1(one, i) != "over") {
+                var two = find_str_1(one, i);
                 i++;
-                var div1=document.createElement("a");
-                div1.className="icon_main";
-                div1.href=find_str_2(two,4);
-                div1.target="_blank";
-                div1.draggable="true";
-                var div11=document.createElement("img");
-                div11.className="icon_img";
-                div11.src=find_str_2(two,2);
-                var div12=document.createElement("span");
-                div12.className="icon_text";
-                div12.innerText = find_str_2(two,3);
+                var div1 = document.createElement("a");
+                div1.className = "icon_main";
+                div1.href = find_str_2(two, 4);
+                div1.target = "_blank";
+                div1.draggable = "true";
+                var div11 = document.createElement("img");
+                div11.className = "icon_img";
+                div11.src = find_str_2(two, 2);
+                var div12 = document.createElement("span");
+                div12.className = "icon_text";
+                div12.innerText = find_str_2(two, 3);
 
                 div1.appendChild(div11);
                 div1.appendChild(div12);
                 div0.appendChild(div1);
 
+                dragElement(div1);
 
+                function dragElement(elmnt) {
+                    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                    if (document.getElementById(elmnt.id + "header")) {
+                        /* 如果存在，header 就是你移动 DIV 的地方：*/
+                        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+                    } else {
+                        /* 否则，将 DIV 从 DIV 内的任何位置移动：*/
+                        elmnt.onmousedown = dragMouseDown;
+                    }
+
+                    function dragMouseDown(e) {
+                        e = e || window.event;
+                        e.preventDefault();
+                        // 在启动时获取鼠标光标位置：
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        document.onmouseup = closeDragElement;
+                        // 当光标移动时调用一个函数：
+                        document.onmousemove = elementDrag;
+                    }
+
+                    function elementDrag(e) {
+                        e = e || window.event;
+                        e.preventDefault();
+                        // 计算新的光标位置：
+                        pos1 = pos3 - e.clientX;
+                        pos2 = pos4 - e.clientY;
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        // 设置元素的新位置：
+                        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                    }
+
+                    function closeDragElement() {
+                        /* 释放鼠标按钮时停止移动：*/
+                        document.onmouseup = null;
+                        document.onmousemove = null;
+                    }
+                }
 
             }
 
-            two=find_str_1(one,1);
-            two=find_str_2(two,2);
+            two = find_str_1(one, 1);
+            two = find_str_2(two, 2);
             console.log(two);
         }
     };
