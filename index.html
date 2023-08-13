@@ -112,40 +112,40 @@
 
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        
+
         elmnt.onmousedown = dragMouseDown;
-        
+
 
         function dragMouseDown(e) {
             e = e || window.event;
             e.preventDefault();
             // 在启动时获取鼠标光标位置：
-            pos3 =0 ;
-            pos4 =0 ;
-            thr=elmnt.href;
-            elmnt.href="";
-            div1.target = "";
-            
+            pos3 = 0;
+            pos4 = 0;
+            thr = elmnt.href;
+            elmnt.href = "";
+            div1.draggable = "";
+
             document.onmouseup = closeDragElement;
             // 当光标移动时调用一个函数：
             document.onmousemove = elementDrag;
         }
 
         function elementDrag(e) {
-            
+
             e = e || window.event;
             e.preventDefault();
             // 计算新的光标位置：
-            pos1=e.clientX-pos3-40;
-            pos2=e.clientY-pos4-40;
+            pos1 = e.clientX - pos3 - 40;
+            pos2 = e.clientY - pos4 - 40;
             // 设置元素的新位置：
-            elmnt.style.top =pos2 + "px";
-            elmnt.style.left =pos1 + "px";
+            elmnt.style.top = pos2 + "px";
+            elmnt.style.left = pos1 + "px";
         }
 
         function closeDragElement() {
             /* 释放鼠标按钮时停止移动：*/
-            
+
             // elmnt.href=thr;
             document.onmouseup = null;
             document.onmousemove = null;
