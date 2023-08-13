@@ -130,8 +130,8 @@
             e = e || window.event;
             e.preventDefault();
             // 计算新的光标位置：
-            pos1=e.clientX-pos3-(elmnt.style.width/2);
-            pos2=e.clientY-pos4-(elmnt.style.height/2);
+            pos1=e.clientX-pos3-40;
+            pos2=e.clientY-pos4-40;
             // 设置元素的新位置：
             elmnt.style.top =pos2 + "px";
             elmnt.style.left =pos1 + "px";
@@ -139,6 +139,8 @@
 
         function closeDragElement() {
             /* 释放鼠标按钮时停止移动：*/
+            elmnt.style.top =elmnt.style.top+200;
+            
             document.onmouseup = null;
             document.onmousemove = null;
         }
