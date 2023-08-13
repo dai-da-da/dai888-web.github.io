@@ -130,6 +130,8 @@
             e = e || window.event;
             e.preventDefault();
             // 计算新的光标位置：
+            pos3 = e.clientX;
+            pos4 = e.clientY;
             pos1=e.clientX-pos3;
             pos2=e.clientY-pos4;
             // 设置元素的新位置：
