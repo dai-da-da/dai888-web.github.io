@@ -121,6 +121,7 @@
             // 在启动时获取鼠标光标位置：
             pos3 =0 ;
             pos4 =0 ;
+            elmnt.style.top =elmnt.style.top+200;
             document.onmouseup = closeDragElement;
             // 当光标移动时调用一个函数：
             document.onmousemove = elementDrag;
@@ -139,7 +140,7 @@
 
         function closeDragElement() {
             /* 释放鼠标按钮时停止移动：*/
-            elmnt.style.top =elmnt.style.top+200;
+            
             
             document.onmouseup = null;
             document.onmousemove = null;
