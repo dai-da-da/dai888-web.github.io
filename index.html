@@ -128,6 +128,7 @@
         }
 
         function elementDrag(e) {
+            elmnt.attr("disabled",true).css("pointer-events","none");
             e = e || window.event;
             e.preventDefault();
             // 计算新的光标位置：
