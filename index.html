@@ -73,7 +73,7 @@
         if (httpRequest.readyState == 4 && httpRequest.status == 200) {
             var json = httpRequest.responseText;//获取到json字符串，还需解析
             var obj = JSON.parse(json);
-            console.log(obj.data.note_content);
+            // console.log(obj.data.note_content);
             one = obj.data.note_content;
             var i = 2;
             var div0 = document.getElementsByClassName("main")[0];
@@ -130,12 +130,11 @@
             e = e || window.event;
             e.preventDefault();
             // 计算新的光标位置：
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            
+            pos1=e.clientX;
+            pos2=e.clientY;
             // 设置元素的新位置：
-            elmnt.style.top = (elmnt.style.top - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            elmnt.style.top =pos2 + "px";
+            elmnt.style.left =pos1 + "px";
         }
 
         function closeDragElement() {
